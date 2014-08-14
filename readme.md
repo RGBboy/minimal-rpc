@@ -18,15 +18,15 @@ Minimal RPC streams for sending the smallest amount of data across the wire.
   stream1.pipe(stream2).pipe(stream1);
 
   stream1.registerRPC(new Buffer('0'), function (data) {
-    console.log(data.toString('utf-8')); // Ping
+    console.log(data.toString('utf-8')); // Pong
   });
 
   stream2.registerRPC(new Buffer('1'), function (data) {
     console.log(data.toString('utf-8')); // Ping
-    stream2.callRPC(new Buffer('1'), new Buffer('Pong'));
+    stream2.callRPC(new Buffer('0'), new Buffer('Pong'));
   });
 
-  stream1.callRPC(new Buffer('0'), new Buffer('Ping'));
+  stream1.callRPC(new Buffer('1'), new Buffer('Ping'));
 
 ```
 
