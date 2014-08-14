@@ -16,6 +16,8 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "through2": "0.x.x",
+    "multibuffer": "2.2.x"
   },
   "devDependencies": {
     "tape": "*",
