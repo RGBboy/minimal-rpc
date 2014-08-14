@@ -39,14 +39,25 @@ Minimal RPC streams for sending the smallest amount of data across the wire.
 * id `Buffer`
 * fn `Function`
 
-The id is stored to distinguish the RPC calls from the other side. The smaller the id, the smaller the framing that needs to be sent by the caller.
+The id is stored to distinguish the RPC calls from the other side. The smaller 
+the id, the smaller the framing that needs to be sent by the caller.
 
 ## instance.callRPC(id, data)
 
 * id `Buffer`
 * data `Buffer`
 
-The id is sent down the wire to distinguish the stream on the other side. The smaller the id, the smaller the framing sent. If you want to send objects across you can use `new Buffer(JSON.stringify(Object))`. This allows users to pack their data in the most efficient way that they can. 
+The id is sent down the wire to distinguish the stream on the other side. The 
+smaller the id, the smaller the framing sent. If you want to send objects 
+across you can use `new Buffer(JSON.stringify(Object))`. This allows users to 
+pack their data in the most efficient way that they can. 
+
+# Errors
+
+An instance will emit an error event if the called RPC is not registered. You 
+can listen for errors with `instance.on('error', function (err) {});`. If you 
+are using MinimalRPC in an untrusted environment and you get an RPC not found 
+error it is probably a good idea to disconnect.
 
 # License 
 
